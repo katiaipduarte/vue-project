@@ -1,0 +1,35 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"extends": [
+		"plugin:vue/vue3-recommended",
+		"plugin:vue/vue3-essential",
+		"eslint:recommended",
+		"@vue/typescript/recommended",
+		"@vue/eslint-config-typescript",
+		"@vue/eslint-config-prettier",
+		"prettier"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"overrides": [
+		{
+			"files": ["cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}"],
+			"extends": ["plugin:cypress/recommended"]
+		}
+	],
+	"plugins": ["prettier"],
+	"rules": {
+    "linebreak-style": ["error", "unix"], // changes the file to LF
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "newline-before-return": "error",
+    "vue/html-indent": ["error", 2],
+    "vue/singleline-html-element-content-newline": 0,
+    "vue/component-name-in-template-casing": ["error", "PascalCase"]
+  }
+}
