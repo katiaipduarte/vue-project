@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import AssetsComponent from '@/components/AssetsComponent.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <main>
-    <AssetsComponent />
-  </main>
+  <p>asdas</p>
 </template>

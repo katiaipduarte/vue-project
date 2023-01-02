@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/transcriptions',
-      name: 'transcriptions',
+      name: 'Transcriptions',
       // route level code-splitting
       // this generates a separate chunk (Transcriptions.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
