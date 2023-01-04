@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useTranscriptionStore } from '@/stores/useTranscriptionStore'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import FetchDocIcon from './icons/IconFetchDocument.vue'
 import UploadIcon from './icons/IconUpload.vue'
 
 const route = useRoute()
+const { getAllTranscription, upsertTranscriptions } = useTranscriptionStore()
 const name = computed(() => route.name)
 </script>
 
@@ -13,10 +15,10 @@ const name = computed(() => route.name)
     <h1>{{ name }}</h1>
 
     <div class="actions">
-      <button>
+      <button class="btn-icon" @click="upsertTranscriptions">
         <UploadIcon />
       </button>
-      <button>
+      <button class="btn-icon" @click="getAllTranscription">
         <FetchDocIcon />
       </button>
     </div>
