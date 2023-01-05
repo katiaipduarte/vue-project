@@ -6,7 +6,7 @@ import FetchDocIcon from './icons/IconFetchDocument.vue'
 import UploadIcon from './icons/IconUpload.vue'
 
 const route = useRoute()
-const { getAllTranscription, upsertTranscriptions } = useTranscriptionStore()
+const { getAllTranscription, updateTranscriptions } = useTranscriptionStore()
 const name = computed(() => route.name)
 </script>
 
@@ -15,7 +15,7 @@ const name = computed(() => route.name)
     <h1>{{ name }}</h1>
 
     <div class="actions">
-      <button class="btn-icon" @click="upsertTranscriptions">
+      <button class="btn-icon" @click="updateTranscriptions">
         <UploadIcon />
       </button>
       <button class="btn-icon" @click="getAllTranscription">

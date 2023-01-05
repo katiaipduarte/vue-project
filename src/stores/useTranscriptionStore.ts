@@ -1,29 +1,30 @@
 import TranscriptionsDataService from '@/services/TranscriptionsDataService'
 import type ResponseData from '@/types/ResponseData'
+import type Transcription from '@/types/TranscriptionData'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
-export const useTranscriptionStore = defineStore('transcription', () => {
-  const transcriptions = ref([])
-
-  async function getAllTranscription() {
-    await TranscriptionsDataService.getAll().then((response: ResponseData) => {
-      transcriptions.value = response.data
-      console.log(transcriptions)
-    })
-  }
-
-  async function upsertTranscriptions() {
-    console.log()
-  }
-
-  function addTranscription() {
-    console.log()
-  }
-
-  function deleteTranscription() {
-    console.log()
-  }
-
-  return { getAllTranscription, upsertTranscriptions, deleteTranscription, addTranscription }
+export const useTranscriptionStore = defineStore('transcription', {
+  state: () => {
+    return {
+      transcriptionList: [] as Transcription[],
+    }
+  },
+  actions: {
+    async getAllTranscription() {
+      await TranscriptionsDataService.getAll().then((response: ResponseData) => {
+        this.transcriptionList = [...response.data]
+      })
+    },
+    async updateTranscriptions() {
+      await TranscriptionsDataService.update(this.transcriptionList).then((response: ResponseData) => {
+        this.transcriptionList = [...response.data]
+      })
+    },
+    addTranscription(item: Transcription) {
+      this.transcriptionList.push(item)
+    },
+    deleteTranscription(id: number) {
+      this.transcriptionList = [...this.transcriptionList.filter((i) => i.id !== id)]
+    },
+  },
 })

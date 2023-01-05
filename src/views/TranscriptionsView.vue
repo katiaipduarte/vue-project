@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AddTranscription from '@/components/AddTranscription.vue'
+import TranscriptionList from '@/components/TranscriptionList.vue'
+</script>
 
 <template>
-  <p>asdas</p>
+  <TranscriptionList />
+  <AddTranscription />
 </template>
