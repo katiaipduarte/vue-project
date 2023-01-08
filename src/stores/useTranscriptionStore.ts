@@ -26,6 +26,13 @@ export const useTranscriptionStore = defineStore('transcription', {
         ...item,
       })
     },
+    updateTranscription(transcription: Transcription) {
+      const transcriptionListCopy = this.transcriptionList.map((i) =>
+        i.id === transcription.id ? { ...this.transcriptionList, ...transcription } : i
+      )
+
+      this.transcriptionList = [...transcriptionListCopy]
+    },
     deleteTranscription(id: number) {
       this.transcriptionList = [...this.transcriptionList.filter((i) => i.id !== id)]
     },

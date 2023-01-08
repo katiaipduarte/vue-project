@@ -29,9 +29,7 @@ const disableSubmit = (): boolean => {
 <template>
   <div v-show="isShow" class="modal">
     <div class="modal-content">
-      <button class="close-btn" aria-label="Close modal" @click="isShow = false">
-        <span class="close">&times;</span>
-      </button>
+      <button class="close-btn" aria-label="Close modal" @click="isShow = false">&times;</button>
       <h2>New Transcription</h2>
 
       <form @submit.prevent="addTranscriptionAndClear(transcription)">
@@ -39,7 +37,7 @@ const disableSubmit = (): boolean => {
         <input id="transcription-title" v-model="transcription.voice" type="text" required minLength="3" />
 
         <label for="transcription-text">Text</label>
-        <textarea id="transcription-text" v-model="transcription.text" type="text" required minLength="3" />
+        <textarea id="transcription-text" v-model="transcription.text" type="text" required minLength="3"></textarea>
 
         <button class="btn-icon" :disabled="disableSubmit()" aria-label="Add new transcriptions">
           <AddRowIcon />

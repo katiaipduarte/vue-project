@@ -9,27 +9,47 @@ const props = defineProps<{
   transcription: Transcription
 }>()
 
-const { deleteTranscription } = useTranscriptionStore()
+const transcriptionObj = ref(props.transcription)
+const editable = ref(false)
+
+const { deleteTranscription, updateTranscription } = useTranscriptionStore()
 
 const checked = ref(false)
 const change = () => {
   checked.value = !checked.value
 }
+
+const updateTranscriptionRecord = () => {
+  updateTranscription(transcriptionObj.value)
+  editable.value = false
+}
 </script>
 
 <template>
   <div class="transcription-item">
-    <label class="checkbox-container sr-only" :for="'checkbox' + props.transcription.id">
-      <span class="hidden">Checkbox for transcription {{ props.transcription.voice }}</span>
-      <input :id="'checkbox' + props.transcription.id" type="checkbox" :checked="checked" @change="change" />
+    <label class="checkbox-container sr-only" :for="'checkbox' + transcriptionObj.id">
+      <span class="hidden">Checkbox for transcription {{ transcriptionObj.voice }}</span>
+      <input :id="'checkbox' + transcriptionObj.id" type="checkbox" :checked="checked" @change="change" />
       <span class="checkmark"></span>
     </label>
-    <PersonIcon />
-    <div class="transcription-text">
-      <h2>{{ props.transcription.voice }}</h2>
-      <p>{{ props.transcription.text }}</p>
+
+    <div class="transcription-icon">
+      <PersonIcon />
     </div>
-    <button class="btn-icon" aria-label="Delete transcription" @click="deleteTranscription(props.transcription.id)">
+    <div class="transcription-text">
+      <div v-if="!editable">
+        <h2>{{ transcriptionObj.voice }}</h2>
+        <p>{{ transcriptionObj.text }}</p>
+        <button aria-label="Edit transcription" @click="editable = true">Edit</button>
+      </div>
+      <div v-else>
+        <input id="transcription-title" v-model="transcriptionObj.voice" type="text" required minLength="3" />
+        <textarea id="transcription-text" v-model="transcriptionObj.text" type="text" required minLength="3"></textarea>
+        <button aria-label="Update transcription" @click="updateTranscriptionRecord()">Update</button>
+        <button aria-label="Cancel transcription" @click="editable = false">Cancel</button>
+      </div>
+    </div>
+    <button class="btn-icon" aria-label="Delete transcription" @click="deleteTranscription(transcriptionObj.id)">
       <DeleteIcon />
     </button>
   </div>
@@ -39,6 +59,10 @@ const change = () => {
 .transcription-item {
   display: flex;
   align-items: flex-start;
+
+  .transcription-icon {
+    min-width: 26px;
+  }
 
   .transcription-text {
     max-width: 595px;
