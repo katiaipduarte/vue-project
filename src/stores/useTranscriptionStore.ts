@@ -20,8 +20,11 @@ export const useTranscriptionStore = defineStore('transcription', {
         this.transcriptionList = [...response.data]
       })
     },
-    addTranscription(item: Transcription) {
-      this.transcriptionList.push(item)
+    addTranscription(item: { voice: string; text: string }) {
+      this.transcriptionList.push({
+        id: this.transcriptionList.length + 1,
+        ...item,
+      })
     },
     deleteTranscription(id: number) {
       this.transcriptionList = [...this.transcriptionList.filter((i) => i.id !== id)]

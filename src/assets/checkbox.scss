@@ -9,12 +9,15 @@
   -ms-user-select: none;
   user-select: none;
 
-  /* On mouse-over, add a grey background color */
+
   &:hover input ~ .checkmark {
     background-color: var(--color-purple);
+
+    &:after {
+      display: block;
+    }
   }
 
-  /* Hide the browser's default checkbox */
   input {
     position: absolute;
     opacity: 0;
@@ -22,7 +25,6 @@
     height: 0;
     width: 0;
 
-    /* When the checkbox is checked, add a blue background */
     &:checked ~ .checkmark {
       background-color: var(--color-purple);
 

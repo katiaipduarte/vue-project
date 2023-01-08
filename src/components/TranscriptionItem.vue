@@ -19,8 +19,9 @@ const change = () => {
 
 <template>
   <div class="transcription-item">
-    <label class="checkbox-container">
-      <input type="checkbox" :checked="checked" @change="change" />
+    <label class="checkbox-container sr-only" :for="'checkbox' + props.transcription.id">
+      <span class="hidden">Checkbox for transcription {{ props.transcription.voice }}</span>
+      <input :id="'checkbox' + props.transcription.id" type="checkbox" :checked="checked" @change="change" />
       <span class="checkmark"></span>
     </label>
     <PersonIcon />

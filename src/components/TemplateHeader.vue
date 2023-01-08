@@ -15,10 +15,10 @@ const name = computed(() => route.name)
     <h1>{{ name }}</h1>
 
     <div class="actions">
-      <button class="btn-icon" @click="updateTranscriptions">
+      <button class="btn-icon" type="submit" @click="updateTranscriptions">
         <UploadIcon />
       </button>
-      <button class="btn-icon" @click="getAllTranscription">
+      <button class="btn-icon" type="submit" @click="getAllTranscription">
         <FetchDocIcon />
       </button>
     </div>

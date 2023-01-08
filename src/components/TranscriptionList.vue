@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AddTranscription from '@/components/AddTranscription.vue'
 import TranscriptionItem from '@/components/TranscriptionItem.vue'
 import { useTranscriptionStore } from '@/stores/useTranscriptionStore'
 import { storeToRefs } from 'pinia'
@@ -8,31 +9,45 @@ const { transcriptionList } = storeToRefs(store)
 </script>
 
 <template>
-  <div>
-    <ul v-if="transcriptionList.length > 0" class="transcription-list">
+  <div v-if="transcriptionList.length > 0" class="transcriptions-container">
+    <ul class="transcription-list">
       <li v-for="transcription in transcriptionList" :key="transcription.id">
         <TranscriptionItem :transcription="transcription" />
       </li>
     </ul>
-
-    <p v-else>Please try to load transcriptions.</p>
+    <AddTranscription />
   </div>
+
+  <h2 v-else class="empty-message">Please try to load transcriptions first.</h2>
 </template>
 
 <style lang="scss" scoped>
-.transcription-list {
-  max-width: 738px;
-  margin: 22px auto;
-  padding: 0;
-  background-color: var(--color-white);
-  list-style: none;
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 110px);
+}
 
-  li {
-    border-bottom: 1px solid var(--color-border);
-    padding: 20px;
+.transcriptions-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .transcription-list {
+    max-width: 738px;
+    margin: 22px auto;
+    padding: 0;
+    background-color: var(--color-white);
+    list-style: none;
 
-    &:last-child {
-      border-bottom: none;
+    li {
+      border-bottom: 1px solid var(--color-border);
+      padding: 20px;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }
