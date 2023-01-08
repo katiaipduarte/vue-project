@@ -15,10 +15,15 @@ const name = computed(() => route.name)
     <h1>{{ name }}</h1>
 
     <div class="actions">
-      <button class="btn-icon" type="submit" @click="updateTranscriptions">
+      <button
+        class="btn-icon"
+        type="submit"
+        aria-label="Upload new and edited transcriptions"
+        @click="updateTranscriptions"
+      >
         <UploadIcon />
       </button>
-      <button class="btn-icon" type="submit" @click="getAllTranscription">
+      <button class="btn-icon" type="submit" aria-label="Get all transcriptions" @click="getAllTranscription">
         <FetchDocIcon />
       </button>
     </div>

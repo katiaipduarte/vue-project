@@ -29,7 +29,7 @@ const change = () => {
       <h2>{{ props.transcription.voice }}</h2>
       <p>{{ props.transcription.text }}</p>
     </div>
-    <button class="btn-icon" @click="deleteTranscription(props.transcription.id)">
+    <button class="btn-icon" aria-label="Delete transcription" @click="deleteTranscription(props.transcription.id)">
       <DeleteIcon />
     </button>
   </div>

@@ -29,7 +29,7 @@ const disableSubmit = (): boolean => {
 <template>
   <div v-show="isShow" class="modal">
     <div class="modal-content">
-      <button class="close-btn" @click="isShow = false">
+      <button class="close-btn" aria-label="Close modal" @click="isShow = false">
         <span class="close">&times;</span>
       </button>
       <h2>New Transcription</h2>
@@ -41,14 +41,14 @@ const disableSubmit = (): boolean => {
         <label for="transcription-text">Text</label>
         <textarea id="transcription-text" v-model="transcription.text" type="text" required minLength="3" />
 
-        <button class="btn-icon" :disabled="disableSubmit()">
+        <button class="btn-icon" :disabled="disableSubmit()" aria-label="Add new transcriptions">
           <AddRowIcon />
         </button>
       </form>
     </div>
   </div>
 
-  <button class="btn-icon" @click="isShow = !isShow">
+  <button class="btn-icon" aria-label="Open modal to create new transcription" @click="isShow = !isShow">
     <AddRowIcon />
   </button>
 </template>

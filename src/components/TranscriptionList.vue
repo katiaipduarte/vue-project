@@ -10,8 +10,8 @@ const { transcriptionList } = storeToRefs(store)
 
 <template>
   <div v-if="transcriptionList.length > 0" class="transcriptions-container">
-    <ul class="transcription-list">
-      <li v-for="transcription in transcriptionList" :key="transcription.id">
+    <ul class="transcription-list" role="tablist">
+      <li v-for="transcription in transcriptionList" :key="transcription.id" role="presentation">
         <TranscriptionItem :transcription="transcription" />
       </li>
     </ul>
